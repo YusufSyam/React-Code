@@ -1,0 +1,1 @@
+ReactDOM.render("Hi Dunia", document.querySelector(".root"))
