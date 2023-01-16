@@ -1,12 +1,10 @@
-import { PDFViewer } from "@react-pdf/renderer";
 import "./App.css";
-import PDFBlankoNilaiSurat from "./components/PDFBlankoNilaiSurat";
-import PDFSKIzinUjianSidang from "./components/PDFSKIzinUjianSidang";
+import PDFUndanganSeminar from "./components/PDFUndanganSeminar";
 
 function App() {
   return (
         // <PDFBlankoNilaiSurat />
-        <PDFSKIzinUjianSidang />
+        <PDFUndanganSeminar />
   );
 }
 

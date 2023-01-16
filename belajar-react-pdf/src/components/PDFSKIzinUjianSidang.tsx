@@ -9,6 +9,7 @@ import {
   PDFViewer,
   Font
 } from "@react-pdf/renderer";
+import KopSurat from "./KopSurat";
 
 export interface IPDFSKIzinUjianSidang {}
 
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: "20px"
   },
   body2: {
-    marginTop: "40px"
+    marginTop: "20px"
   },
   group: {
     display: "flex",
@@ -106,6 +107,11 @@ const styles = StyleSheet.create({
   stack: {
     display: "flex",
     flexDirection: "column"
+  },
+  stackBox: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "2px"
   },
   stack1: {
     display: "flex",
@@ -210,7 +216,7 @@ const styles = StyleSheet.create({
     fontSize: "12px",
     alignSelf: "flex-end",
     fontFamily: "Times-Roman",
-    marginTop: "60px",
+    marginTop: "60px"
   },
   titik2: {
     marginTop: "80px",
@@ -236,28 +242,8 @@ const PDFSKIzinUjianSidang: React.FC<IPDFSKIzinUjianSidang> = ({}) => {
     <PDFViewer style={styles.viewer}>
       <Document>
         <Page style={styles.page} size="A4">
+          <KopSurat />
           <View style={styles.headerContainer}>
-            <Text style={styles.header1}>
-              KEMENTERIAN PENDIDIKAN, KEBUDAYAAN,
-            </Text>
-            <Text style={styles.header1}>RISET, DAN TEKNOLOGI</Text>
-            <Text style={styles.header1}>UNIVERSITAS HASANUDDIN</Text>
-            <Text style={styles.header1Block}>Fakultas Farmasi</Text>
-            <Text style={styles.header2}>
-              Jalan Perintis Kemerdekaan Km.10, Makassar 90245
-            </Text>
-            <Text style={styles.header2}>
-              Telepon (0411) 588556, Faksimili (0411) 590663
-            </Text>
-            <Text style={styles.header2}>Laman : farmasi.unhas.ac.id</Text>
-            <Image
-              style={styles.hr}
-              src={window.location.origin + "/images/hr.png"}
-            />
-            <Image
-              style={styles.imageHeader}
-              src={window.location.origin + "/images/logo-unhas.png"}
-            />
             <View style={styles.pageTitle1}>
               <Text style={styles.header3}>
                 Surat Pengantar Berkas Ujian Sidang
@@ -367,7 +353,7 @@ const PDFSKIzinUjianSidang: React.FC<IPDFSKIzinUjianSidang> = ({}) => {
                   </Text>
                 </View>
               </View>
-              <View style={styles.stack}>
+              <View style={styles.stackBox}>
                 <View style={styles.box}></View>
                 <View style={styles.box}></View>
                 <View style={styles.box}></View>
