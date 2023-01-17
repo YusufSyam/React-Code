@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Page,
   Text,
@@ -6,24 +6,46 @@ import {
   Document,
   StyleSheet,
   PDFViewer,
-  Image,
-} from '@react-pdf/renderer';
-import KopSurat from './KopSurat';
+  Image
+} from "@react-pdf/renderer";
+import KopSurat from "./KopSurat";
+import { extractDate } from "../utils/functions/data.function";
 
 // Create styles
+export interface IPDFSKPembimbing {
+  name: string;
+  letterNumber: string;
+  nim: string;
+  studyProgram: string;
+  department: string;
+  dean: string;
+  deanNip: string;
+  letterDate: Date;
+  mainMentor: string;
+  sideMentor: string;
+}
 
 // Create Document Component
-const PDFSKPembimbing = () => (
+const PDFSKPembimbing: React.FC<IPDFSKPembimbing> = ({
+  dean,
+  deanNip,
+  letterDate,
+  letterNumber,
+  mainMentor,
+  name,
+  nim,
+  sideMentor,
+  studyProgram,
+  department
+}) => (
   <PDFViewer style={styles.viewer}>
     <Document title="PDF Sifa">
-      <Page size="A4" style={styles.page} >
+      <Page size="A4" style={styles.page}>
         <KopSurat />
         <View style={styles.content}>
           <View style={styles.contentTitle}>
             <Text style={styles.contentTitleText}>SURAT PENUGASAN</Text>
-            <Text  >
-              NOMOR : 1640/UN4.11.1/TD.06/2022
-            </Text>
+            <Text>NOMOR : {letterNumber}</Text>
           </View>
 
           <View style={styles.students}>
@@ -42,18 +64,14 @@ const PDFSKPembimbing = () => (
                 <Text style={styles.data}>Pembimbing Pendamping</Text>
               </View>
               <View style={styles.studentDataValue}>
-                <Text style={styles.data}>
-                  : Dr.Eng. Armin Lawi, S.Si., M.Eng.
-                </Text>
-                <Text style={styles.data}>
-                  : A. Muh. Amil Siddik, S.Si.,M.Si
-                </Text>
+                <Text style={styles.data}>: {mainMentor}</Text>
+                <Text style={styles.data}>: {sideMentor}</Text>
                 {/* <Text style={styles.data}></Text> */}
               </View>
             </View>
 
             <Text style={styles.headerTextContent}>
-              Untuk membimbing mahasiswa yaitu :{' '}
+              Untuk membimbing mahasiswa yaitu :{" "}
             </Text>
             <View style={styles.biodata}>
               <View style={styles.studentData}>
@@ -63,12 +81,10 @@ const PDFSKPembimbing = () => (
                 <Text style={styles.data}>Departemen</Text>
               </View>
               <View style={styles.studentDataValue}>
-                <Text style={styles.data}>: MUHAMMAD ISLAHFARI WAHID</Text>
-                <Text style={styles.data}>: H071181501</Text>
-                <Text style={styles.data}> : Sistem Informasi</Text>
-                <Text style={styles.data}>
-                  : Isolasi dan Skrining Bakteri Simbion Dari Bintang laut
-                </Text>
+                <Text style={styles.data}>: {name}</Text>
+                <Text style={styles.data}>: {nim}</Text>
+                <Text style={styles.data}>: {studyProgram}</Text>
+                <Text style={styles.data}>: {department}</Text>
               </View>
             </View>
 
@@ -90,7 +106,7 @@ const PDFSKPembimbing = () => (
             </Text>
             <Text style={styles.footerBottomText}>Arsip</Text>
           </View>
-          <View  >
+          <View>
             <View>
               <View>
                 <View>
@@ -98,7 +114,7 @@ const PDFSKPembimbing = () => (
                     Dikeluarkan di Makassar
                   </Text>
                   <Text style={styles.footerBottomText}>
-                    Tanggal 10 Oktober 2022
+                    Tanggal {extractDate(letterDate)}
                   </Text>
                 </View>
               </View>
@@ -111,8 +127,8 @@ const PDFSKPembimbing = () => (
               />
             </View>
             <View style={styles.footerTextContent}>
-              <Text>Dr. Hendra, S.Si, M.Kom</Text>
-              <Text>NIP 197601022002121001</Text>
+              <Text>{dean}</Text>
+              <Text>NIP. {deanNip}</Text>
             </View>
           </View>
         </View>
@@ -123,146 +139,146 @@ const PDFSKPembimbing = () => (
 
 const styles = StyleSheet.create({
   viewer: {
-    width: '100vw',
-    height: '100vh',
+    width: "100vw",
+    height: "100vh"
   },
   page: {
     paddingHorizontal: 52,
-    paddingVertical: 30,
+    paddingVertical: 30
   },
 
   section: {
     margin: 10,
     padding: 10,
-    flexGrow: 1,
+    flexGrow: 1
   },
   kopSurat: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginBottom: 10,
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 10
   },
   images: {
     width: 55,
-    height: 65,
+    height: 65
   },
   location: {
     fontSize: 10,
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     bottom: 10,
-    right: 0,
+    right: 0
   },
   header: {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    fontFamily: 'Times-Roman',
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    fontFamily: "Times-Roman",
     fontSize: 13.5,
-    width: '100%',
-    paddingLeft: 16,
+    width: "100%",
+    paddingLeft: 16
   },
   name: {
-    marginBottom: 3,
+    marginBottom: 3
   },
   faculty: {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
     marginBottom: 3,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
   university: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
+    textTransform: "uppercase",
+    fontWeight: "bold",
     marginBottom: 3,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
   line: {
-    width: '100%',
-    height: '3px',
-    backgroundColor: 'black',
+    width: "100%",
+    height: "3px",
+    backgroundColor: "black"
   },
   contentTitle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 10,
     marginBottom: 16,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
   contentTitleText: {
-    fontSize: 12,
+    fontSize: 12
   },
   data: {
     fontSize: 11,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingLeft: 12,
-    marginBottom: 10,
+    marginBottom: 10
   },
   headerTextContent: {
     fontSize: 11,
     marginVertical: 12,
-    textAlign: 'justify',
-    lineHeight: '1.75px',
-    letterSpacing: '0.25px',
+    textAlign: "justify",
+    lineHeight: "1.75px",
+    letterSpacing: "0.25px"
   },
   headerTextContainer: {
-    flexDirection: 'row',
+    flexDirection: "row"
   },
   headerBold: {
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
   footerTextContent: {
     fontSize: 11,
-    textAlign: 'justify',
+    textAlign: "justify",
     marginTop: 16,
-    lineHeight: '1.75px',
-    letterSpacing: '0.25px',
-    fontFamily: 'Helvetica',
+    lineHeight: "1.75px",
+    letterSpacing: "0.25px",
+    fontFamily: "Helvetica"
   },
   address: {
     fontSize: 11,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column"
   },
   students: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column"
   },
   biodata: {
-    flexDirection: 'row',
+    flexDirection: "row"
   },
   studentData: {
-    width: '30%',
-    fontFamily: 'Helvetica',
+    width: "30%",
+    fontFamily: "Helvetica"
   },
   studentDataValue: {
-    width: '70%',
+    width: "70%"
   },
 
   footer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 50,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end"
   },
 
   footerContentLeft: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     bottom: 0,
-    width: '40%',
+    width: "40%"
   },
   footerBottomText: {
     fontSize: 11,
-    fontFamily: 'Helvetica',
+    fontFamily: "Helvetica"
   },
   barcodeImage: {
     width: 90,
-    height: 90,
+    height: 90
   },
   ttdImage: {
     width: 45,
-    height: 45,
-  },
+    height: 45
+  }
 });
 
 export default PDFSKPembimbing;

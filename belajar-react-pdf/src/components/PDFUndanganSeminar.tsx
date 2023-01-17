@@ -10,8 +10,7 @@ import {
   Font
 } from "@react-pdf/renderer";
 import KopSurat from "./KopSurat";
-
-export interface IPDFUndanganSeminar {}
+import { dateToRange, extractDate, extractDay } from "../utils/functions/data.function";
 
 // Font.register({ family: "Times-Roman", src: "Times-Roman" });
 // Font.register({ group1
@@ -211,7 +210,55 @@ const styles = StyleSheet.create({
   }
 });
 
-const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
+export interface IPDFUndanganSeminar {
+  name: string;
+  nim: string;
+  proposalTitle: string;
+  letterDate: Date;
+  seminarDate: Date;
+  seminarTimeStart: Date;
+  seminarTimeEnd: Date;
+  mainMentor: string;
+  sideMentor: string;
+  firstExaminer: string;
+  secondExaminer: string;
+  mainMentorNip: string;
+  sideMentorNip: string;
+  firstExaminerNip: string;
+  secondExaminerNip: string;
+  place?: string;
+  seminarCoordinator: string;
+  seminarCoordinatorNip: string;
+  onlinePlace?: string;
+  studyProgram: string;
+  letterNumber: string;
+  department: string;
+}
+
+const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({
+  letterNumber,
+  department,
+  firstExaminer,
+  firstExaminerNip,
+  letterDate,
+  mainMentor,
+  mainMentorNip,
+  name,
+  nim,
+  proposalTitle,
+  secondExaminer,
+  secondExaminerNip,
+  seminarCoordinator,
+  seminarCoordinatorNip,
+  seminarDate,
+  seminarTimeEnd,
+  seminarTimeStart,
+  sideMentor,
+  sideMentorNip,
+  studyProgram,
+  onlinePlace,
+  place
+}) => {
   return (
     <PDFViewer style={styles.viewer}>
       <Document>
@@ -225,7 +272,7 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                 <Text style={styles.text1noIndentMB}>Hal</Text>
               </View>
               <View style={styles.stack}>
-                <Text style={styles.text1noIndentMB}>: 1</Text>
+                <Text style={styles.text1noIndentMB}>: {letterNumber}</Text>
                 <Text style={styles.text1noIndentMB}>: -</Text>
                 <Text style={styles.text1noIndentMB}>: Undangan Seminar</Text>
               </View>
@@ -233,19 +280,19 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
             <View style={styles.group1}>
               <Text style={styles.text1noIndent}>Kepada Yth,</Text>
               <Text style={styles.text1noIndent}>
-                Ketua Bapak/Ibu Dosen Departemen Matematika
+                Ketua Bapak/Ibu Dosen Departemen {department}
               </Text>
-              <Text style={styles.text1noIndent}>di-</Text>
-              <Text style={styles.text1noIndent}>Tempat</Text>
+              <Text style={styles.text1noIndent}>{" "}di-</Text>
+              <Text style={styles.text1noIndent}>{" "}Tempat</Text>
             </View>
             <View style={styles.body1}>
               <Text style={styles.text1noIndentMB}>Dengan Hormat,</Text>
               <Text style={styles.text1noIndentMB}>
-                Sehubungan akan diadakannya Seminar Seminar Proposal Mahasiswa
+                Sehubungan akan diadakannya Seminar Proposal Mahasiswa
                 Program Studi
               </Text>
               <Text style={styles.text1noIndent}>
-                Farmasi Fakultas Farmasi berikut :
+                {studyProgram} Fakultas Farmasi berikut :
               </Text>
             </View>
             <View>
@@ -253,19 +300,17 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                 <View style={styles.group1}>
                   <Text style={styles.text1noIndentW}>NIM</Text>
                   <Text style={styles.text1noIndent}>: </Text>
-                  <Text style={styles.text1noIndent}>H071191042</Text>
+                  <Text style={styles.text1noIndent}>{nim}</Text>
                 </View>
                 <View style={styles.group1}>
                   <Text style={styles.text1noIndentW}>Nama</Text>
                   <Text style={styles.text1noIndent}>: </Text>
-                  <Text style={styles.text1noIndent}>Muhammad Takdim</Text>
+                  <Text style={styles.text1noIndent}>{name}</Text>
                 </View>
                 <View style={styles.group1}>
                   <Text style={styles.text1noIndentW}>Judul Tugas Akhir</Text>
                   <Text style={styles.text1noIndent}>: </Text>
-                  <Text style={styles.text1noIndentW2}>
-                    RANCANG BANGUN SISTEM INFORMASI APLIKASI PERPUSTAKAAN
-                    UNIVERSITAS HASANUDDIN BERBASIS ANDROID
+                  <Text style={styles.text1noIndentW2}>{proposalTitle}
                   </Text>
                 </View>
                 <View style={styles.group1}>
@@ -273,10 +318,10 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                   <Text style={styles.text1noIndent}>: </Text>
                   <View style={styles.stack}>
                     <Text style={styles.text1noIndentMB}>
-                      Dr. Hendra, S.Si., M.Kom.
+                      {mainMentor}
                     </Text>
                     <Text style={styles.text1noIndent}>
-                      NIP. 197601022002121001
+                      NIP. {mainMentorNip}
                     </Text>
                   </View>
                 </View>
@@ -287,10 +332,10 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                   <Text style={styles.text1noIndent}>: </Text>
                   <View style={styles.stack}>
                     <Text style={styles.text1noIndentMB}>
-                      Dr. Hendra, S.Si., M.Kom.
+                      {sideMentor}
                     </Text>
                     <Text style={styles.text1noIndent}>
-                      NIP. 197601022002121001
+                      NIP. {sideMentorNip}
                     </Text>
                   </View>
                 </View>
@@ -302,10 +347,10 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                       <Text style={styles.text1noIndent}>1. </Text>
                       <View style={styles.stack}>
                         <Text style={styles.text1noIndentMB}>
-                          Dr. Hendra, S.Si., M.Kom.
+                          {firstExaminer}
                         </Text>
                         <Text style={styles.text1noIndent}>
-                          NIP. 197601022002121001
+                          NIP. {firstExaminerNip}
                         </Text>
                       </View>
                     </View>
@@ -313,10 +358,10 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                       <Text style={styles.text1noIndent}>2. </Text>
                       <View style={styles.stack}>
                         <Text style={styles.text1noIndentMB}>
-                          Dr. Hendra, S.Si., M.Kom.
+                          {secondExaminer}
                         </Text>
                         <Text style={styles.text1noIndent}>
-                          NIP. 197601022002121001
+                          NIP. {secondExaminerNip}
                         </Text>
                       </View>
                     </View>
@@ -337,18 +382,18 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                     </View>
                     <View style={styles.stack}>
                       <Text style={styles.text1noIndentWMB}>
-                        : Jumat, 25 November 2022
+                        : {extractDay(seminarDate)}, {extractDate(seminarDate)}
                       </Text>
                       <Text style={styles.text1noIndentWMB}>
-                        : 14:00 - 15:00
+                        : {dateToRange(seminarTimeStart, seminarTimeEnd)}
                       </Text>
                       <Text style={styles.text1noIndentWMB}>
-                        : Hybrid (via Zoom)
+                        : {place || "Hybrid (via Zoom)"}
                       </Text>
                       <Text style={styles.text1noIndentW2}>
                         :
-                        https://telkomsel.zoom.us/j/96874722331?pwd=cDVrVVBhVFBjY1d4NHpSRlEvam5OUT09
-                      </Text>
+                        {onlinePlace}
+                        </Text>
                     </View>
                   </View>
                 </View>
@@ -360,7 +405,7 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                 </View>
                 <View style={styles.signPlaceContainer}>
                   <Text style={styles.text1noIndentMB}>
-                    Makassar, 15 November 2022
+                    Makassar, {extractDate(letterDate)}
                   </Text>
                   <Text style={styles.text1noIndentMB}>
                     Koordinator Seminar
@@ -368,10 +413,10 @@ const PDFUndanganSeminar: React.FC<IPDFUndanganSeminar> = ({}) => {
                   <Text style={styles.text1noIndentMB}>Farmasi,</Text>
                   <View style={styles.signPlace3}>
                     <Text style={styles.text2noIndent}>
-                      Abdul Rahim, S.Si, M.Si, Ph.D, Apt
+                      {seminarCoordinator}
                     </Text>
                     <Text style={styles.text1noIndent}>
-                      NIP. 197711112008121001
+                      NIP. {seminarCoordinatorNip}
                     </Text>
                   </View>
                 </View>

@@ -9,18 +9,51 @@ import {
   Image
 } from "@react-pdf/renderer";
 import KopSurat from "./KopSurat";
+import {
+  dateToRange,
+  extractDate,
+  extractDay
+} from "../utils/functions/data.function";
 
 // Create styles footerContentRight contentTitleSubtext
-
-// Create Document Component
-const PDFSuratKesediaan = () => (
+export interface IPDFSuratKesediaan {
+  name: string;
+  nim: string;
+  proposalTitle: string;
+  letterDate: Date;
+  seminarDate: Date;
+  seminarTimeStart: Date;
+  seminarTimeEnd: Date;
+  place?: string;
+  firstExaminer: string;
+  secondExaminer: string;
+  thirdExaminer: string;
+  fourthExaminer: string;
+}
+const PDFSuratKesediaan: React.FC<IPDFSuratKesediaan> = ({
+  // Create Document Component
+  firstExaminer,
+  fourthExaminer,
+  letterDate,
+  name,
+  nim,
+  proposalTitle,
+  secondExaminer,
+  seminarDate,
+  seminarTimeEnd,
+  seminarTimeStart,
+  thirdExaminer,
+  place = "Hybrid (via Zoom)"
+}) => (
   <PDFViewer style={styles.viewer}>
     <Document title="PDF Sifa">
       <Page size="A4" style={styles.page}>
         <KopSurat />
 
         <View style={styles.content}>
-          <Text style={styles.location}>Makassar, 15 November 2022</Text>
+          <Text style={styles.location}>
+            Makassar, {extractDate(letterDate)}
+          </Text>
           <View style={styles.contentTitle}>
             <Text style={styles.contentTitleText}>SURAT KESEDIAAN PENGUJI</Text>
           </View>
@@ -37,12 +70,9 @@ const PDFSuratKesediaan = () => (
                 <Text style={styles.data}>Judul Tugas Akhir</Text>
               </View>
               <View style={styles.studentDataValue}>
-                <Text style={styles.data}>: H071191042</Text>
-                <Text style={styles.data}>: Muhammad Takdim</Text>
-                <Text style={styles.data}>
-                  : RANCANG BANGUN SISTEM INFORMASI APLIKASI PERPUSTAKAAN
-                  UNIVERSITAS HASANUDDIN BERBASIS ANDROID
-                </Text>
+                <Text style={styles.data}>: {name}</Text>
+                <Text style={styles.data}>: {nim}</Text>
+                <Text style={styles.data}>: {proposalTitle}</Text>
                 {/* <Text style={styles.data}></Text> */}
               </View>
             </View>
@@ -58,9 +88,13 @@ const PDFSuratKesediaan = () => (
                 <Text style={styles.data}>Tempat</Text>
               </View>
               <View style={styles.studentDataValue}>
-                <Text style={styles.data}>: Jumat, 25 November 2022</Text>
-                <Text style={styles.data}>: 14:00 - 15:00</Text>
-                <Text style={styles.data}>: Hybrid (via Zoom)</Text>
+                <Text style={styles.data}>
+                  : {extractDay(seminarDate)}, {extractDate(seminarDate)}
+                </Text>
+                <Text style={styles.data}>
+                  : {dateToRange(seminarTimeStart, seminarTimeEnd)}
+                </Text>
+                <Text style={styles.data}>: {place}</Text>
                 {/* <Text style={styles.data}></Text> */}
               </View>
             </View>
@@ -73,7 +107,7 @@ const PDFSuratKesediaan = () => (
               </View>
               <View style={styles.tableRow}>
                 <Text style={styles.row1}>1</Text>
-                <Text style={styles.row2}>Dr. Hendra, S.Si., M.Kom. </Text>
+                <Text style={styles.row2}>{firstExaminer}</Text>
                 <Text style={styles.row3}>Ketua (Ex Officio)</Text>
                 <View style={styles.row4}>
                   <Image
@@ -84,9 +118,7 @@ const PDFSuratKesediaan = () => (
               </View>
               <View style={styles.tableRow}>
                 <Text style={styles.row1}>2</Text>
-                <Text style={styles.row2}>
-                  A. Muh. Amil Siddik, S.Si.,M.Si{" "}
-                </Text>
+                <Text style={styles.row2}>{secondExaminer}</Text>
                 <Text style={styles.row3}>Sekretaris (Ex Officio)</Text>
                 <View style={styles.row4}>
                   <Image
@@ -97,7 +129,7 @@ const PDFSuratKesediaan = () => (
               </View>
               <View style={styles.tableRow}>
                 <Text style={styles.row1}>3</Text>
-                <Text style={styles.row2}>Edy Saputra Rusdi, S.Si., M.Si </Text>
+                <Text style={styles.row2}>{thirdExaminer}</Text>
                 <Text style={styles.row3}>Anggota</Text>
                 <View style={styles.row4}>
                   <Image
@@ -108,7 +140,7 @@ const PDFSuratKesediaan = () => (
               </View>
               <View style={styles.tableRow}>
                 <Text style={styles.row1}>4</Text>
-                <Text style={styles.row2}>Jeriko Gormantara, S.Si.,M.Si. </Text>
+                <Text style={styles.row2}>{fourthExaminer}</Text>
                 <Text style={styles.row3}>Anggota</Text>
                 <View style={styles.row4}>
                   <Image
