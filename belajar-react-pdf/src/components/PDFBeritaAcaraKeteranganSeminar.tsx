@@ -20,61 +20,76 @@ const PDFBeritaAcaraKeteranganSeminar = () => (
         <KopSurat />
 
         <View style={styles.content}>
-          <Text style={styles.location}>Makassar, 15 November 2022</Text>
           <View style={styles.contentTitle}>
-            <Text style={styles.contentTitleText}>SURAT KESEDIAAN PENGUJI</Text>
+            <Text style={styles.contentTitleText}>
+              BERITA ACARA SEMINAR PROPOSAL
+            </Text>
           </View>
 
           <View style={styles.students}>
             <Text style={styles.headerTextContent}>
-              Yang bertanda tangan dibawah ini, panitia penguji mahasiswa :
+              Pada hari ini Jumat, tanggal 25 November 2022, pukul 14:00 –
+              selesai WITA telah dilaksanakan Seminar Proposal untuk Saudara
             </Text>
             <View style={styles.biodata}>
               <View style={styles.studentData}>
                 <Text style={styles.data}>NIM</Text>
                 <Text style={styles.data}>Nama</Text>
-                {/* <Text style={styles.data}>Program Studi</Text> */}
-                <Text style={styles.data}>Judul Tugas Akhir</Text>
+                <Text style={styles.data}>Program Studi</Text>
+                <Text style={styles.dataMB}>Pembimbing</Text>
+                <Text style={styles.dataMB}>Penguji</Text>
+                <Text style={styles.dataMT}>Judul Penelitian</Text>
               </View>
               <View style={styles.studentDataValue}>
                 <Text style={styles.data}>: H071191042</Text>
                 <Text style={styles.data}>: Muhammad Takdim</Text>
+                <Text style={styles.data}>: Sistem Informasi</Text>
+                <View style={styles.biodata}>
+                  <Text style={styles.data}>:</Text>
+                  <View style={styles.stack}>
+                    <Text style={styles.data2}>
+                      1. Dr. Hendra, S.Si., M.Kom.
+                    </Text>
+                    <Text style={styles.data2}>
+                      2. Dr. Hendra, S.Si., M.Kom.
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.biodata}>
+                  <Text style={styles.data}>:</Text>
+                  <View style={styles.stack}>
+                    <Text style={styles.data2}>
+                      1. Dr. Hendra, S.Si., M.Kom.
+                    </Text>
+                    <Text style={styles.data2}>
+                      2. Dr. Hendra, S.Si., M.Kom.
+                    </Text>
+                  </View>
+                </View>
                 <Text style={styles.data}>
-                  : RANCANG BANGUN SISTEM INFORMASI APLIKASI PERPUSTAKAAN
-                  UNIVERSITAS HASANUDDIN BERBASIS ANDROID
+                  : UNIVERSITAS HASANUDDIN BERBASIS ANDROID : RANCANG BANGUN
+                  SISTEM INFORMASI APLIKASI PERPUSTAKAAN
                 </Text>
                 {/* <Text style={styles.data}></Text> */}
               </View>
             </View>
 
-            <Text style={styles.headerTextContent}>
-              Menyetujui pelaksanaan seminar/ujian Seminar Proposal pada:
+            <Text style={styles.headerTextContent2}>
+              Yang dihadiri oleh panitia Seminar Proposal berikut:
             </Text>
-            <View style={styles.biodata}>
-              <View style={styles.studentData}>
-                <Text style={styles.data}>Hari/Tanggal</Text>
-                <Text style={styles.data}>Pukul</Text>
-                {/* <Text style={styles.data}>Program Studi</Text> */}
-                <Text style={styles.data}>Tempat</Text>
-              </View>
-              <View style={styles.studentDataValue}>
-                <Text style={styles.data}>: Jumat, 25 November 2022</Text>
-                <Text style={styles.data}>: 14:00 - 15:00</Text>
-                <Text style={styles.data}>: Hybrid (via Zoom)</Text>
-                {/* <Text style={styles.data}></Text> */}
-              </View>
-            </View>
             <View style={styles.table}>
               <View style={styles.tableHead}>
                 <Text style={styles.row1}>No.</Text>
                 <Text style={styles.row2}>Nama Penguji </Text>
                 <Text style={styles.row3}>Jabatan</Text>
+                <Text style={styles.rowNilai}>Nilai</Text>
                 <Text style={styles.row4}>Tanda Tangan</Text>
               </View>
               <View style={styles.tableRow}>
                 <Text style={styles.row1}>1</Text>
                 <Text style={styles.row2}>Dr. Hendra, S.Si., M.Kom. </Text>
                 <Text style={styles.row3}>Ketua (Ex Officio)</Text>
+                <Text style={styles.rowNilai}>88.1</Text>
                 <View style={styles.row4}>
                   <Image
                     style={styles.ttdImage}
@@ -88,6 +103,7 @@ const PDFBeritaAcaraKeteranganSeminar = () => (
                   A. Muh. Amil Siddik, S.Si.,M.Si{" "}
                 </Text>
                 <Text style={styles.row3}>Sekretaris (Ex Officio)</Text>
+                <Text style={styles.rowNilai}>90.0</Text>
                 <View style={styles.row4}>
                   <Image
                     style={styles.ttdImage}
@@ -99,6 +115,7 @@ const PDFBeritaAcaraKeteranganSeminar = () => (
                 <Text style={styles.row1}>3</Text>
                 <Text style={styles.row2}>Edy Saputra Rusdi, S.Si., M.Si </Text>
                 <Text style={styles.row3}>Anggota</Text>
+                <Text style={styles.rowNilai}>75.0</Text>
                 <View style={styles.row4}>
                   <Image
                     style={styles.ttdImage}
@@ -110,6 +127,7 @@ const PDFBeritaAcaraKeteranganSeminar = () => (
                 <Text style={styles.row1}>4</Text>
                 <Text style={styles.row2}>Jeriko Gormantara, S.Si.,M.Si. </Text>
                 <Text style={styles.row3}>Anggota</Text>
+                <Text style={styles.rowNilai}>75.0</Text>
                 <View style={styles.row4}>
                   <Image
                     style={styles.ttdImage}
@@ -117,14 +135,45 @@ const PDFBeritaAcaraKeteranganSeminar = () => (
                   />
                 </View>
               </View>
+              <View style={styles.rowFooterContainer}>
+                <Text style={styles.rowFooter}>
+                  Keputusan panitia Seminar Proposal: Lulus/ Tidak Lulus dengan
+                  nilai angka 86.5 dan huruf A.
+                </Text>
+              </View>
             </View>
-            <View>
-              <Text style={styles.footerTextContent}>
-                Bila ada yang tidak hadir pada acara seminar/ujian tersebut maka
-                keputusan diserahkan kepada ketua panitia tim penguji. Demikian
-                surat keterangan ini dibuat untuk digunakan memperlancar
-                jalannya Ujian Sidang Sarjana.
-              </Text>
+            <View style={styles.footer1}>
+              <View>
+                <Image
+                  style={styles.barcodeImage}
+                  src={`${window.location.origin}/images/qr.png`}
+                />
+              </View>
+              <View>
+                <View>
+                  <View>
+                    <View>
+                      <Text style={styles.footerBottomText}>
+                        Dikeluarkan di Makassar
+                      </Text>
+                      <Text style={styles.footerBottomText}>
+                        Tanggal 10 Oktober 2022
+                      </Text>
+                    </View>
+                  </View>
+                  <Text style={styles.footerBottomText}>Dekan</Text>
+                </View>
+                <View>
+                  <Image
+                    style={styles.ttdImage}
+                    src={`${window.location.origin}/images/ttd_sifa.jpg`}
+                  />
+                </View>
+                <View style={styles.footerTextContent}>
+                  <Text>Dr. Hendra, S.Si, M.Kom</Text>
+                  <Text>NIP 197601022002121001</Text>
+                </View>
+              </View>
             </View>
           </View>
         </View>
@@ -180,6 +229,10 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     fontFamily: "Helvetica-Bold"
   },
+  stack: {
+    display: "flex",
+    flexDirection: "column"
+  },
   university: {
     textTransform: "uppercase",
     fontWeight: "bold",
@@ -191,31 +244,45 @@ const styles = StyleSheet.create({
     height: "3px",
     backgroundColor: "black"
   },
+  footerBottomText: {
+    fontSize: 11,
+    fontFamily: "Helvetica"
+  },
   contentTitle: {
     textAlign: "center",
     fontSize: 10,
-    marginVertical: 25,
+    marginBottom: 20,
     fontFamily: "Helvetica-Bold"
   },
   contentTitleText: {
-    marginTop: 5,
     fontSize: 12
   },
   data: {
     fontSize: 11,
     fontWeight: "bold",
     paddingLeft: 12,
-    marginBottom: 10
+    marginBottom: 4
+  },
+  data2: {
+    fontSize: 11,
+    fontWeight: "bold",
+    paddingLeft: 1,
+    marginBottom: 4
   },
   headerTextContent: {
     fontSize: 11,
     textAlign: "justify",
-    marginBottom: 16
+    marginBottom: 10
+  },
+  headerTextContent2: {
+    fontSize: 11,
+    textAlign: "justify",
+    marginBottom: 8
   },
   footerTextContent: {
     fontSize: 11,
     textAlign: "justify",
-    marginTop: 16,
+    marginTop: 0,
     lineHeight: "1.75px",
     letterSpacing: "0.5px",
     fontFamily: "Helvetica"
@@ -235,6 +302,18 @@ const styles = StyleSheet.create({
   biodata: {
     flexDirection: "row"
   },
+  dataMT: {
+    fontSize: 11,
+    fontWeight: "bold",
+    paddingLeft: 12,
+    marginTop: 1
+  },
+  dataMB: {
+    fontSize: 11,
+    fontWeight: "bold",
+    paddingLeft: 12,
+    marginBottom: 19
+  },
   studentData: {
     width: "30%",
     fontFamily: "Helvetica"
@@ -247,6 +326,12 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     marginTop: 50,
+    justifyContent: "space-between"
+  },
+  footer1: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 30,
     justifyContent: "space-between"
   },
 
@@ -280,7 +365,26 @@ const styles = StyleSheet.create({
     borderRight: 1
   },
   row2: {
-    width: "45%",
+    width: "35%",
+    paddingHorizontal: 7,
+    paddingVertical: 5,
+    borderRight: 1
+  },
+
+  rowFooter: {
+    paddingHorizontal: 4,
+    paddingVertical: 4,
+    fontSize: 11
+  },
+  rowFooterContainer: {
+    width: "100%",
+    // borderRight: 1,
+    borderTop: 1
+    // borderLeft: 1,
+    // borderBottom: 1
+  },
+  rowNilai: {
+    width: "10%",
     paddingHorizontal: 7,
     paddingVertical: 5,
     borderRight: 1

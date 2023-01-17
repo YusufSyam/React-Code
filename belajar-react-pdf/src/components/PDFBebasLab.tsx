@@ -58,7 +58,7 @@ const PDFBebasLab = () => (
           <View>
             <Image
               style={styles.barcodeImage}
-              src={`${window.location.origin}/images/barcode.jpg`}
+              src={`${window.location.origin}/images/qr.png`}
             />
           </View>
           <View>
