@@ -9,8 +9,20 @@ import {
   PDFViewer,
   Font
 } from "@react-pdf/renderer";
+import { extractDate } from "../utils/functions/data.function";
 
-export interface IPDFBlankoNilaiSurat {}
+export interface IPDFBlankoNilaiSurat {
+  name: string;
+  nim: string;
+  department: string;
+  proposalTitle: string;
+  score: number;
+  letterDate: Date;
+  mainMentorNim: string;
+  sideMentorNim: string;
+  season: string;
+  whatSeason: "Awal" | "Akhir";
+}
 
 // Font.register({ family: "Times-Roman", src: "Times-Roman" });
 // Font.register({
@@ -168,7 +180,18 @@ const styles = StyleSheet.create({
   }
 });
 
-const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
+const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({
+  department,
+  letterDate,
+  mainMentorNim,
+  name,
+  nim,
+  proposalTitle,
+  score,
+  sideMentorNim,
+  season,
+  whatSeason
+}) => {
   return (
     <PDFViewer style={styles.viewer}>
       <Document>
@@ -213,24 +236,24 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
                 <Text style={styles.textStack}>Judul Penelitian</Text>
               </View>
               <View style={styles.stack}>
-                <Text style={styles.textStack}>: Nama</Text>
-                <Text style={styles.textStack}>: Stambuk</Text>
-                <Text style={styles.textStack}>: Jurusan</Text>
-                <Text style={styles.textStack}>: Judul Penelitian</Text>
+                <Text style={styles.textStack}>: {name}</Text>
+                <Text style={styles.textStack}>: {nim}</Text>
+                <Text style={styles.textStack}>: {department}</Text>
+                <Text style={styles.textStack}>: {proposalTitle}</Text>
               </View>
             </View>
             <View style={styles.body1}>
               <Text style={styles.text1}>
                 Benar mahasiswa yang bersangkutan telah menyusun Skripsi pada
-                semester Awal
+                semester {whatSeason}
               </Text>
               <Text style={styles.text1noIndent}>
-                2022/2023 dan juga telah memperbaiki koreksi yang diajukan oleh
-                para Dosen Penguji kepadanya dinyatakan lulus dengan nilai:
+                {`${season}`} dan juga telah memperbaiki koreksi yang diajukan
+                oleh para Dosen Penguji kepadanya dinyatakan lulus dengan nilai:
               </Text>
             </View>
             <View style={styles.scoreBody}>
-              <Text style={styles.scoreBodyText}>89</Text>
+              <Text style={styles.scoreBodyText}>{score}</Text>
             </View>
             <View style={styles.body1}>
               <Text style={styles.text1}>
@@ -240,7 +263,9 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
               <Text style={styles.text1noIndent}>nakan seperlunya.</Text>
             </View>
             <View style={styles.body1}>
-              <Text style={styles.signPlace}>Makassar, 2022</Text>
+              <Text style={styles.signPlace}>
+                Makassar, {extractDate(letterDate)}
+              </Text>
               <Text style={styles.text1noIndent}>Disahkan oleh :</Text>
             </View>
             <View style={styles.body1}>
@@ -248,7 +273,7 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
               <Text style={styles.titik2}>
                 .....................................
               </Text>
-              <Text style={styles.text1center}>NIP. 123456543212345</Text>
+              <Text style={styles.text1center}>NIP. {sideMentorNim}</Text>
             </View>
             <View style={styles.body1}>
               <Text style={styles.scoreDescriptionTitle}>
@@ -310,8 +335,8 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
             </View>
             <View style={styles.body1}>
               <Text style={styles.text1}>
-                Yang bertandatangan di bawah ini, Pembimbing Utama
-                menerangkan bahwa:
+                Yang bertandatangan di bawah ini, Pembimbing Utama menerangkan
+                bahwa:
               </Text>
             </View>
             <View style={styles.group1}>
@@ -322,24 +347,24 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
                 <Text style={styles.textStack}>Judul Penelitian</Text>
               </View>
               <View style={styles.stack}>
-                <Text style={styles.textStack}>: Nama</Text>
-                <Text style={styles.textStack}>: Stambuk</Text>
-                <Text style={styles.textStack}>: Jurusan</Text>
-                <Text style={styles.textStack}>: Judul Penelitian</Text>
+                <Text style={styles.textStack}>: {name}</Text>
+                <Text style={styles.textStack}>: {nim}</Text>
+                <Text style={styles.textStack}>: {department}</Text>
+                <Text style={styles.textStack}>: {proposalTitle}</Text>
               </View>
             </View>
             <View style={styles.body1}>
               <Text style={styles.text1}>
                 Benar mahasiswa yang bersangkutan telah menyusun Skripsi pada
-                semester Awal
+                semester {whatSeason}
               </Text>
               <Text style={styles.text1noIndent}>
-                2022/2023 dan juga telah memperbaiki koreksi yang diajukan oleh
+                {season} dan juga telah memperbaiki koreksi yang diajukan oleh
                 para Dosen Penguji kepadanya dinyatakan lulus dengan nilai:
               </Text>
             </View>
             <View style={styles.scoreBody}>
-              <Text style={styles.scoreBodyText}>89</Text>
+              <Text style={styles.scoreBodyText}>{score}</Text>
             </View>
             <View style={styles.rubricList}>
               {/* A A- B+ B B- C+ C D E */}
@@ -361,7 +386,9 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
               <Text style={styles.text1noIndent}>nakan seperlunya.</Text>
             </View>
             <View style={styles.body1}>
-              <Text style={styles.signPlace}>Makassar, 2022</Text>
+              <Text style={styles.signPlace}>
+                Makassar, {extractDate(letterDate)}
+              </Text>
               <Text style={styles.text1noIndent}>Disahkan oleh :</Text>
             </View>
             <View style={styles.body1}>
@@ -369,7 +396,7 @@ const PDFBlankoNilaiSurat: React.FC<IPDFBlankoNilaiSurat> = ({}) => {
               <Text style={styles.titik2}>
                 .....................................
               </Text>
-              <Text style={styles.text1center}>NIP. 123456543212345</Text>
+              <Text style={styles.text1center}>NIP. {mainMentorNim}</Text>
             </View>
             <View style={styles.body1}>
               <Text style={styles.scoreDescriptionTitle}>

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.10.1",
+    "@mantine/hooks": "^5.10.1",
     "@react-pdf/image": "^2.2.0",
     "@react-pdf/png-js": "^2.2.0",
     "@react-pdf/renderer": "^3.0.1",

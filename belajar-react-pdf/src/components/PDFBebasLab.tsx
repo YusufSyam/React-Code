@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Page,
   Text,
@@ -6,14 +6,34 @@ import {
   Document,
   StyleSheet,
   PDFViewer,
-  Image,
-} from '@react-pdf/renderer';
-import KopSurat from './KopSurat';
+  Image
+} from "@react-pdf/renderer";
+import KopSurat from "./KopSurat";
+import { extractDate } from "../utils/functions/data.function";
 
 // Create styles
+export interface IPDFBebasLab {
+  name: string;
+  letterNumber: string;
+  nim: string;
+  faculty?: string;
+  labHead: string;
+  labHeadNip: string;
+  laboratory?: string;
+  letterDate: Date;
+}
 
 // Create Document Component
-const PDFBebasLab = () => (
+const PDFBebasLab: React.FC<IPDFBebasLab> = ({
+  faculty="Farmasi",
+  labHead,
+  labHeadNip,
+  laboratory,
+  letterDate,
+  letterNumber,
+  name,
+  nim
+}) => (
   <PDFViewer style={styles.viewer}>
     <Document title="PDF Sifa">
       <Page size="A4" style={styles.page}>
@@ -21,9 +41,7 @@ const PDFBebasLab = () => (
         <View style={styles.content}>
           <View style={styles.contentTitle}>
             <Text style={styles.contentTitleText}>SURAT KETERANGAN</Text>
-            <Text  >
-              No. 19/J/J04.01/PP.12/2022
-            </Text>
+            <Text>No. {letterNumber}</Text>
           </View>
 
           <View style={styles.students}>
@@ -39,9 +57,9 @@ const PDFBebasLab = () => (
                 <Text style={styles.data}>Fakultas</Text>
               </View>
               <View style={styles.studentData}>
-                <Text style={styles.data}>: Muhammad Islahfari Wahid</Text>
-                <Text style={styles.data}>: H071181501</Text>
-                <Text style={styles.data}>: Farmasi</Text>
+                <Text style={styles.data}>: {name}</Text>
+                <Text style={styles.data}>: {nim}</Text>
+                <Text style={styles.data}>: {faculty}</Text>
                 {/* <Text style={styles.data}></Text> */}
               </View>
             </View>
@@ -63,7 +81,7 @@ const PDFBebasLab = () => (
           </View>
           <View>
             <View style={styles.headerTextContent}>
-              <Text>Makassar, 24 Februari 2022</Text>
+              <Text>Makassar, {extractDate(letterDate)}</Text>
               <Text>Kepala laboratorium</Text>
             </View>
             <View>
@@ -73,8 +91,8 @@ const PDFBebasLab = () => (
               />
             </View>
             <View style={styles.footerTextContent}>
-              <Text>Dr. Hendra, S.Si, M.Kom</Text>
-              <Text>NIP 197601022002121001</Text>
+              <Text>{labHead}</Text>
+              <Text>NIP. {labHeadNip}</Text>
             </View>
           </View>
         </View>
@@ -85,116 +103,116 @@ const PDFBebasLab = () => (
 
 const styles = StyleSheet.create({
   viewer: {
-    width: '100vw',
-    height: '100vh',
+    width: "100vw",
+    height: "100vh"
   },
   page: {
     paddingHorizontal: 65,
-    paddingVertical: 30,
+    paddingVertical: 30
   },
 
   section: {
     margin: 10,
     padding: 10,
-    flexGrow: 1,
+    flexGrow: 1
   },
   kopSurat: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginBottom: 10,
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 10
   },
   images: {
     width: 50,
-    height: 60,
+    height: 60
   },
   header: {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    fontFamily: 'Times-Roman',
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    fontFamily: "Times-Roman",
     fontSize: 12,
-    width: '100%',
+    width: "100%"
   },
   name: {
-    marginBottom: 3,
+    marginBottom: 3
   },
   faculty: {
-    textTransform: 'uppercase',
-    marginBottom: 3,
+    textTransform: "uppercase",
+    marginBottom: 3
   },
   university: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    marginBottom: 3,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    marginBottom: 3
   },
   line: {
-    width: '100%',
-    height: '3px',
-    backgroundColor: 'black',
+    width: "100%",
+    height: "3px",
+    backgroundColor: "black"
   },
   contentTitle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 10,
     marginBottom: 25,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
   contentTitleText: {
-    textDecoration: 'underline',
-    marginBottom: 3,
+    textDecoration: "underline",
+    marginBottom: 3
   },
   data: {
     fontSize: 11,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingLeft: 12,
-    marginBottom: 10,
+    marginBottom: 10
   },
   headerTextContent: {
     fontSize: 11,
-    textAlign: 'justify',
-    marginBottom: 16,
+    textAlign: "justify",
+    marginBottom: 16
   },
   footerTextContent: {
     fontSize: 11,
-    textAlign: 'justify',
-    marginTop: 16,
+    textAlign: "justify",
+    marginTop: 16
   },
   address: {
-    fontSize: 9,
+    fontSize: 9
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column"
   },
   students: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column"
   },
   biodata: {
-    flexDirection: 'row',
+    flexDirection: "row"
   },
   studentData: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
     marginRight: 30,
-    fontFamily: 'Helvetica-Bold',
+    fontFamily: "Helvetica-Bold"
   },
 
   footer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     marginTop: 50,
-    justifyContent: 'space-between',
+    justifyContent: "space-between"
   },
 
   barcodeImage: {
     width: 90,
-    height: 90,
+    height: 90
   },
   ttdImage: {
     width: 70,
-    height: 70,
-  },
+    height: 70
+  }
 });
 
 export default PDFBebasLab;

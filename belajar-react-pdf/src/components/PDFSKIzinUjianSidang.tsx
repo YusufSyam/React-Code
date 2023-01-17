@@ -10,8 +10,18 @@ import {
   Font
 } from "@react-pdf/renderer";
 import KopSurat from "./KopSurat";
+import { extractDate } from "../utils/functions/data.function";
 
-export interface IPDFSKIzinUjianSidang {}
+export interface IPDFSKIzinUjianSidang {
+  name: string;
+  nim: string;
+  department: string;
+  faculty?: string;
+  checkList: boolean[];
+  firstViceDean: string;
+  firstViceDeanNip: string;
+  letterDate: Date;
+}
 
 // Font.register({ family: "Times-Roman", src: "Times-Roman" });
 // Font.register({
@@ -237,7 +247,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const PDFSKIzinUjianSidang: React.FC<IPDFSKIzinUjianSidang> = ({}) => {
+const PDFSKIzinUjianSidang: React.FC<IPDFSKIzinUjianSidang> = ({
+  department,
+  faculty="Farmasi",
+  name,
+  nim,
+  checkList,
+  firstViceDean,
+  firstViceDeanNip,
+  letterDate
+}) => {
   return (
     <PDFViewer style={styles.viewer}>
       <Document>
@@ -257,10 +276,12 @@ const PDFSKIzinUjianSidang: React.FC<IPDFSKIzinUjianSidang> = ({}) => {
                 <Text style={styles.textStack}>PROGRAM STUDI</Text>
               </View>
               <View style={styles.stack2}>
-                <Text style={styles.textStack}>: Muh. Yusuf Syam</Text>
-                <Text style={styles.textStack}>: H071191044</Text>
-                <Text style={styles.textStack}>: FARMASI</Text>
-                <Text style={styles.textStack}>: STRATA SATU FARMASI</Text>
+                <Text style={styles.textStack}>: {name}</Text>
+                <Text style={styles.textStack}>: {nim}</Text>
+                <Text style={styles.textStack}>: {faculty}</Text>
+                <Text style={styles.textStack}>
+                  : STRATA SATU {department.toUpperCase()}
+                </Text>
               </View>
             </View>
             <View style={styles.body2}>
@@ -354,39 +375,31 @@ const PDFSKIzinUjianSidang: React.FC<IPDFSKIzinUjianSidang> = ({}) => {
                 </View>
               </View>
               <View style={styles.stackBox}>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
-                <View style={styles.box}></View>
+                {checkList.map((checked: boolean, e: number) => {
+                  return (
+                    <View style={styles.box}>
+                      {checked ? (
+                        <Image
+                          src={window.location.origin + "/images/check.png"}
+                        />
+                      ) : null}
+                    </View>
+                  );
+                })}
               </View>
             </View>
             <View style={styles.stack1}>
-              <Text style={styles.signPlace}>Makassar, 20 Januari 2022</Text>
+              <Text style={styles.signPlace}>Makassar, {extractDate(letterDate)}</Text>
               <Text style={styles.signPlace}>
                 Wakil Dekan Bidang Akademik dan
               </Text>
               <Text style={styles.signPlace2}>Kemahasiswaan</Text>
               <View style={styles.signPlace3}>
                 <Text style={styles.text2noIndent}>
-                  Abdul Rahim, S.Si, M.Si, Ph.D, Apt
+                  {firstViceDean}
                 </Text>
                 <Text style={styles.text1noIndent}>
-                  NIP. 197711112008121001
+                  NIP. {firstViceDeanNip}
                 </Text>
               </View>
             </View>
