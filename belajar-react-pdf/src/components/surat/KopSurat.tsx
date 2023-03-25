@@ -71,7 +71,7 @@ const KopSurat: React.FC<IKopSurat> = ({}) => {
       />
       <Image
         style={styles.imageHeader}
-        src={"https://upload.wikimedia.org/wikipedia/commons/9/91/Bantaeng_Regency_Logo.png"}
+        src={window.location.origin + "/images/logo-unhas.png"}
       />
     </View>
   );

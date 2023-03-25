@@ -14,7 +14,7 @@ function App() {
   const [opened, setOpened] = useState(true);
   return (
     <>
-      {/* <PDFBlankoNilaiSurat
+      <PDFBlankoNilaiSurat
         department="Sistem Informasi"
         letterDate={new Date()}
         mainMentorNim={"H071191044"}
@@ -25,8 +25,9 @@ function App() {
         season={"2022/2023"}
         sideMentorNim={"1341193921900182"}
         whatSeason={"Akhir"}
-      /> */}
-      {/* <PDFSKIzinUjianSidang
+      />
+      <PDFSKIzinUjianSidang
+      letterDate={new Date()}
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
         department="Farmasi"
@@ -54,8 +55,8 @@ function App() {
         ]}
         firstViceDean={"Abdul Rahim, S.Si, M.Si, Ph.D, Apt. Devon"}
         firstViceDeanNip={"8281970019283100"}
-      /> */}
-      {/* <PDFBebasLab
+      />
+      <PDFBebasLab
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
         faculty={"Farmasi"}
@@ -63,8 +64,8 @@ function App() {
         labHeadNip={"8281970019283100"}
         letterDate={new Date()}
         letterNumber={"19/J/J04.01/PP.12/2022"}
-      /> */}
-      {/* <PDFSKPembimbing
+      />
+      <PDFSKPembimbing
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
         dean={"Abdul Rahim, S.Si, M.Si, Ph.D, Apt. Devon"}
@@ -75,8 +76,8 @@ function App() {
         mainMentor={"A"}
         sideMentor={"A"}
         studyProgram={"Ilmu Komputer"}
-      /> */}
-      {/* <PDFSKPenguji
+      />
+      <PDFSKPenguji
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
         dean={"Abdul Rahim, S.Si, M.Si, Ph.D, Apt. Devon"}
@@ -88,8 +89,8 @@ function App() {
         secretary={"A"}
         studyProgram={"Ilmu Komputer"}
         member={['a', 'b', 'c']}
-      /> */}
-      {/* <PDFSuratKesediaan
+      />
+      <PDFSuratKesediaan
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
         letterDate={new Date()}
@@ -102,8 +103,8 @@ function App() {
         secondExaminer={"A"}
         thirdExaminer={"A"}
         fourthExaminer={"A"}
-     /> */}
-      {/* <PDFBeritaAcaraKeteranganSeminar
+     />
+      <PDFBeritaAcaraKeteranganSeminar
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
         letterDate={new Date()}
@@ -125,7 +126,7 @@ function App() {
         seminarTimeEnd={new Date()}
         studyProgram={"Sistem Informasi"}
         isPassed={true}
-      /> */}
+      />
       <PDFUndanganSeminar
         name={"Muh. Yusuf Syam"}
         nim={"H071191044"}
